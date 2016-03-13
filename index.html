@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disco Ball EX</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<script type="text/javascript" src="phaser.min.js"></script>
+   <script type="text/javascript" src="game.js"></script>
+   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+   <style type="text/css">
+   	@font-face {
+  			font-family: '8bitoperator';
+  			src: url('8bitoperator.ttf');
+		}		
+		
+		*{
+			font-family: '8bitoperator';
+			color: white;		
+		}
+		#mute{
+			position: fixed;
+			left: 1px;
+			top: 25%;
+			width: 80px;
+			height: 80px;
+			background-color: black;
+			border-radius: 40px;
+			font-size: 10px;
+		}
+		#control{			
+			position: fixed;
+			left: 1px;
+			top: 40%;
+			width: 80px;
+			height: 80px;
+			background-color: black;
+			border-radius: 40px;
+			font-size: 10px;
+		}
+		
+		#credits{
+			position: relative;
+			width: 300px;
+			bottom: 0%;
+			left: calc(50% - 150px);
+			font-size: 10px;
+		}
+   </style>
+   <script type="text/javascript">
+   	mainState.control = true
+   	var muted = false;
+   	function mute(){
+			if(muted == false){
+				document.getElementById("dbg").volume = 0;	
+				document.getElementById("ohyes").volume = 0;	
+				document.getElementById("mute").innerHTML = 'Volume is OFF';	
+				muted = true;
+			}else{
+				document.getElementById("dbg").volume = 1;	
+				document.getElementById("ohyes").volume = 1;	
+				document.getElementById("mute").innerHTML = 'Volume is ON';	
+				muted = false;
+			} 	
+   	}
+   	
+   	function control(){
+   		mainState.control = !mainState.control;
+   		if(mainState.control == true){
+				document.getElementById("control").innerHTML = 'Mouse to shoot';	
+   		}else{
+				document.getElementById("control").innerHTML = 'Z to shoot';	
+   		}
+   	}
+   </script>
+   
+</head>
+
+<body style="background-color: black;">
+	<p align="center">Please note that Firefox sometimes doesn't support mp4, so Mettaton will not show up.</p>
+	<div style="text-align:center"> 
+ 		<video id="met" autoplay loop width="243" height="247" src="mettaton.mp4">
+			Your browser does not support the video tag.
+		</video> 
+	</div>
+	
+	<button id="mute" onclick="mute()">Volume is ON</button>
+	<button id="control" onclick="control()">Mouse to shoot</button>
+	
+	<audio id="dbg" autoplay loop>
+  		<source src="dbg.mp3" type="audio/mpeg">
+  		<source src="dbg.ogg" type="audio/ogg">
+  		<source src="dbg.wav" type="audio/wav">
+  		Your browser does not support audio. Death by Glamour will not play, but the game is still playable.
+	</audio>
+	
+	<audio id="ohyes">
+  		<source src="ohyes.mp3" type="audio/mpeg">
+  		<source src="ohyes.ogg" type="audio/ogg">
+  		<source src="ohyes.wav" type="audio/wav">
+  		Your browser does not support audio!
+	</audio>
+	
+	<p align="center">Press P to pause.</p>
+	<div id="gameDiv"></div>
+   <p id="score" align="center"></p>
+   <p id="credits" align="center">Disco Ball EX made by <a href="https://www.reddit.com/user/K-a-Z-e" style="color:purple;">Ruyi Li</a>.<br>Undertale © 2015 made by Toby Fox</p>
+    
+	
+</body>
+</html>
